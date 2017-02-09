@@ -2,7 +2,7 @@
 The site is a side project to create my new home page using the latest/fun tech stacks.
 
 ## Tech stacks
-- Golang net/http package for REST server.
+- Gorilla mux router for REST api.
 - React boilerplate for frontend framework.
 - MongoDB/Redis for data storage.
 - Docker and docker-composer for deployment environment.
