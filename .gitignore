@@ -38,3 +38,6 @@ jspm_packages
 
 # golang vendors
 vendor
+
+# web build folder
+dist

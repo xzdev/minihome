@@ -20,13 +20,14 @@ type Routes []Route
 func main() {
 
 	routes := Routes{
-		Route{"GET", "/", r.HomeHandler},
 		Route{"GET", "/blogs", r.BlogsHandler},
 		Route{"GET", "/blogs/{id}", r.ReadBlogHandler},
 		Route{"GET", "/resume", r.ResumeHandler},
 		Route{"GET", "/bookmarks", r.BookmarkHandler},
 	}
 	router := newRouter(routes)
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./www/")))
+
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
