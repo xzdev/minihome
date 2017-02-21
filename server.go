@@ -17,6 +17,8 @@ type Route struct {
 
 type Routes []Route
 
+const WWW = "./www/dist/"
+
 func main() {
 
 	routes := Routes{
@@ -26,7 +28,7 @@ func main() {
 		Route{"GET", "/bookmarks", r.BookmarkHandler},
 	}
 	router := newRouter(routes)
-	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./www/")))
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir(WWW)))
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
