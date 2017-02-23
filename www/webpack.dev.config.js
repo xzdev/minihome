@@ -58,9 +58,6 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         // prints more readable module names in the browser console on HMR updates
         new webpack.NamedModulesPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true
-        })
     ],
     devServer: {
         host: 'localhost',
