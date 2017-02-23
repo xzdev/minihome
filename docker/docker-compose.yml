@@ -1,0 +1,23 @@
+version: '2'
+
+services: 
+    server:
+        build: ./golang
+        command: go run server.go
+        environment:
+            - GOPATH=/go
+        volumes: 
+            - ../server.go:/go/src/github.com/xzdev/minihome/server.go
+            - ../routers:/go/src/github.com/xzdev/minihome/routers
+            - ../vendor:/go/src/
+            - ../www/dist:/go/src/github.com/xzdev/minihome/www/dist
+        ports: 
+            - 8080:8080
+        links:
+            - redis
+    redis:
+        image: redis
+        volumes: 
+            - ./data:/data
+        ports:
+            - 6379:6379
