@@ -41,3 +41,6 @@ vendor
 
 # web build folder
 dist
+
+# redis data folder
+data
