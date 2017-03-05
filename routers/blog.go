@@ -38,7 +38,6 @@ func BlogsHandler(w http.ResponseWriter, r *http.Request, conn redis.Conn) {
 	log.Println("pageSize:", pageSize, "pageIndex:", pageIndex)
 	// query db to get the blogs data
 	rows, err := conn.Do("KEYS", "blog:*")
-	total := len(rows.([]interface{}))
 
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
@@ -48,6 +47,7 @@ func BlogsHandler(w http.ResponseWriter, r *http.Request, conn redis.Conn) {
 		}
 		jsonResponse(w, error)
 	} else {
+		total := len(rows.([]interface{}))
 		blogs := []Blog{}
 		for i := 0; i < pageSize; i++ {
 			var blog Blog
