@@ -3,8 +3,12 @@ The site is a side project to create my new home page using the latest/fun tech 
 
 ## Tech stacks
 - Gorilla mux router for REST api.
-- React boilerplate for frontend framework.
-- MongoDB/Redis for data storage.
+- React + Redux for frontend framework.
+    - React-Router v4
+    - Redux-Sage
+    - Redux server side rendering
+    - Immutable JS
+- Redis for data storage.
 - Docker and docker-composer for deployment environment.
 
 ## Feature list
