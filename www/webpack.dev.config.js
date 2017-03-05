@@ -47,6 +47,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             inject: false,
             template: require('html-webpack-template'),
+            appMountId: 'root',
             devServer: 'http://localhost:3000',
             title: 'My Home Site',
             favicon: './favicon.ico',

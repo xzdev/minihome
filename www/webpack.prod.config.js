@@ -43,6 +43,9 @@ module.exports = {
             title: 'My Home Site',
             favicon: './favicon.ico',
             filename: 'index.html',
+            inject: false,
+            template: require('html-webpack-template'),
+            appMountId: 'root',            
         }),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true
