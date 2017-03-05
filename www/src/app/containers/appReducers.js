@@ -1,4 +1,6 @@
-const initState = {
+import { fromJS } from 'immutable';
+
+const initState = fromJS({
   blogs: {
     blogsMap: {},
     total: 0,
@@ -7,9 +9,9 @@ const initState = {
   },
   bookmarks: {},
   resume: {},
-};
+});
 
-function fromListToMap(list) {
+function fromListToMap(list = []) {
   const map = {};
   list.map(item => (map[item.id] = item));
   return map;
@@ -18,17 +20,10 @@ function fromListToMap(list) {
 const appReducers = (state = initState, action) => {
   switch (action.type) {
     case 'REQUEST_BLOGS_SUCCESS':
-      return {
-        ...state,
-        blogs: {
-          ...state.blogs,
-          total: action.payload.total,
-          blogsMap: {
-            ...state.blogs.blogsMap,
-            ...fromListToMap(action.payload.blogs),
-          },
-        },
-      };
+      return state
+        .setIn(['blogs', 'total'], action.payload.total)
+        .setIn(['blogs', 'pageIndex'], action.payload.pageIndex)
+        .mergeIn(['blogs', 'blogsMap'], fromListToMap(action.payload.blogs));
     default:
       return state;
   }

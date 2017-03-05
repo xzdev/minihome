@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.config.js",
+    "server": "babel-node src/server.js --presets es2015,stage-2",
     "build": "npm-run-all --parallel clean build:*",
     "build:copy": "node scripts/copy.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js",
@@ -15,7 +16,6 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "express": "^4.15.0",
     "immutable": "^3.8.1",
     "normalize.css": "^5.0.0",
     "path": "^0.12.7",
@@ -39,6 +39,7 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
+    "body-parser": "^1.17.0",
     "copy": "^0.3.0",
     "cross-env": "^3.1.4",
     "eslint": "^3.15.0",

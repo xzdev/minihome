@@ -29,6 +29,43 @@ type blogBlocks struct {
 	Blogs []Blog `json:"blogs"`
 }
 
+func getBlogs(pageSize, pageIndex int, conn redis.Conn) (*blogBlocks, error) {
+	// query db to get the blogs data
+	rows, err := conn.Do("KEYS", "blog:*")
+
+	if err != nil {
+		return nil, err
+	}
+
+	total := len(rows.([]interface{}))
+	blogs := []Blog{}
+	for i := 0; i < pageSize; i++ {
+		var blog Blog
+		blogID := i + pageIndex*pageSize + 1 // 1-based index
+		blogBlob, err := conn.Do("GET", fmt.Sprintf("blog:%v", blogID))
+		if err != nil || blogBlob == nil {
+			continue
+		}
+
+		if err = json.Unmarshal(blogBlob.([]byte), &blog); err != nil {
+			panic(err)
+		} else {
+			blogs = append(blogs, blog)
+		}
+	}
+
+	blockData := blogBlocks{
+		pageBlock: pageBlock{
+			PageSize:  pageSize,
+			PageIndex: pageIndex,
+			Total:     total,
+		},
+		Blogs: blogs,
+	}
+
+	return &blockData, nil
+}
+
 func BlogsHandler(w http.ResponseWriter, r *http.Request, conn redis.Conn) {
 
 	query := r.URL.Query()
@@ -36,8 +73,7 @@ func BlogsHandler(w http.ResponseWriter, r *http.Request, conn redis.Conn) {
 	pageIndex := parseInt(query.Get("pageIndex"), 0)
 
 	log.Println("pageSize:", pageSize, "pageIndex:", pageIndex)
-	// query db to get the blogs data
-	rows, err := conn.Do("KEYS", "blog:*")
+	blockData, err := getBlogs(pageSize, pageIndex, conn)
 
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
@@ -47,31 +83,6 @@ func BlogsHandler(w http.ResponseWriter, r *http.Request, conn redis.Conn) {
 		}
 		jsonResponse(w, error)
 	} else {
-		total := len(rows.([]interface{}))
-		blogs := []Blog{}
-		for i := 0; i < pageSize; i++ {
-			var blog Blog
-			blogID := i + pageIndex*pageSize + 1 // 1-based index
-			blogBlob, err := conn.Do("GET", fmt.Sprintf("blog:%v", blogID))
-			if err != nil || blogBlob == nil {
-				continue
-			}
-
-			if err = json.Unmarshal(blogBlob.([]byte), &blog); err != nil {
-				panic(err)
-			} else {
-				blogs = append(blogs, blog)
-			}
-		}
-
-		blockData := blogBlocks{
-			pageBlock: pageBlock{
-				PageSize:  pageSize,
-				PageIndex: pageIndex,
-				Total:     total,
-			},
-			Blogs: blogs,
-		}
 
 		w.WriteHeader(http.StatusOK)
 		jsonResponse(w, blockData)
