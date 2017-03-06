@@ -1,6 +1,8 @@
 var { resolve } = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+// var StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 
 var srcPath = resolve(__dirname, 'src');
 
@@ -31,6 +33,29 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/,
             loaders: ['babel-loader', 'eslint-loader']
+        }, {
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [{
+                    loader: 'css-loader',
+                    options: { sourceMap: true, importLoaders: 1 }
+                }, {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: true,
+                        plugins: () => [
+                            require('postcss-import')({
+                                addDependencyTo: webpack,
+                            }),
+                            require("postcss-cssnext")({
+                                browsers: ['last 2 versions', 'ie >= 9'],
+                                compress: true,
+                            })
+                        ],
+                    },
+                }],
+            })            
         }]
     },
     stats: {
@@ -49,6 +74,13 @@ module.exports = {
         }),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true
-        })
+        }),
+        new ExtractTextPlugin({
+            filename: 'styles.css',
+            disable: false,
+            allChunks: true
+        }),
+        // new ExtractTextPlugin('styles.css'),
+        // new StyleExtHtmlWebpackPlugin(),
     ],
 };
