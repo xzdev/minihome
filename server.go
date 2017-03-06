@@ -37,7 +37,7 @@ func main() {
 	defer redisPool.Close()
 
 	routes := Routes{
-		Route{"GET", "/", r.HomeHandler},
+		Route{"GET", "/ssr", r.HomeHandler},
 		Route{"POST", "/blogs", r.CreateBlogHandler},
 		Route{"GET", "/blogs", r.BlogsHandler},
 		Route{"GET", "/blogs/{id}", r.ReadBlogHandler},
