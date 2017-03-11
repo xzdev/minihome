@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectBlogs } from '../appSelectors';
+import Blog from '../../components/Blog';
 
 const BLOG_PAGE_SIZE = 50;
 
@@ -32,11 +33,7 @@ class View extends Component {
       <div>
         {
           pageBlogs.map(blog => (
-            <div key={blog.id}>
-              <div>{blog.title}</div>
-              <div>{blog.content}</div>
-              <div>{new Date(blog.publishTime).toDateString()}</div>
-            </div>
+            <Blog blog={blog} />
           ))
         }
         <div>{total}</div>

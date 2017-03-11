@@ -44,20 +44,16 @@ module.exports = {
                 fallback: 'style-loader',
                 use: [{
                     loader: 'css-loader',
-                    options: { sourceMap: true, importLoaders: 1 }
+                    options: {
+                        modules: true,
+                        sourceMap: true,
+                        importLoaders: 1,
+                        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                    },
                 }, {
                     loader: 'postcss-loader',
                     options: {
                         sourceMap: true,
-                        plugins: () => [
-                            require('postcss-import')({
-                                addDependencyTo: webpack,
-                            }),
-                            require("postcss-cssnext")({
-                                browsers: ['last 2 versions', 'ie >= 9'],
-                                compress: true,
-                            })
-                        ],
                     },
                 }],
             })

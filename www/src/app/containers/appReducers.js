@@ -24,6 +24,9 @@ const appReducers = (state = initState, action) => {
         .setIn(['blogs', 'total'], action.payload.total)
         .setIn(['blogs', 'pageIndex'], action.payload.pageIndex)
         .mergeIn(['blogs', 'blogsMap'], fromListToMap(action.payload.blogs));
+    case 'REQUEST_RESUME_SUCCESS':
+      return state
+        .set('resume', action.payload);
     default:
       return state;
   }
