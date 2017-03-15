@@ -33,7 +33,7 @@ class View extends Component {
       <div>
         {
           pageBlogs.map(blog => (
-            <Blog blog={blog} />
+            <Blog blog={blog} key={blog.id} />
           ))
         }
         <div>{total}</div>

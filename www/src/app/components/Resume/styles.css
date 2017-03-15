@@ -1,0 +1,108 @@
+.resume-block {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.resume-header {
+		border-bottom: 4px solid #000;
+		text-align: center;
+}
+
+.name {
+  font-size: 28px;
+  text-align: center;
+}
+
+.cell, .email, .home {
+  display: inline-block;
+  padding: 2px 3px;
+}
+
+.resume-sections {
+
+}
+
+.resume-section {
+  padding: 2px 2px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+
+.content {
+
+}
+
+.listitem {
+
+}
+
+.listlist {
+
+}
+
+.taglist {
+  display: inline-block;
+}
+
+.name, .tag {
+  display: inline-block;
+  padding-left: 2px;
+}
+
+.tag {
+  padding-left: 5px;
+}
+
+.description {
+  padding: 2px 2px;
+}
+
+.list.hide {
+  display: none;
+}
+
+.block {
+  padding: 8px 2px;
+}
+
+.headerline {
+  position: relative;
+  border-bottom: 1px dotted #333;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.item {
+  display: flex;
+}
+
+.item-text {
+  padding: 0px 4px;
+}
+
+.left, .middle, .right {
+  display: inline-block;
+}
+
+.left {
+  font-weight: bold;
+}
+
+.right {
+  width: 130px;
+  position: absolute;
+  right: 0px;
+  text-align: center;
+}
+
+.middle {
+  position: absolute;
+  right: 130px;
+}

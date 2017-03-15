@@ -46,6 +46,7 @@ module.exports = {
                     loader: 'css-loader',
                     options: {
                         modules: true,
+                        camelCase: 'dashes',
                         sourceMap: true,
                         importLoaders: 1,
                         localIdentName: '[path][name]__[local]--[hash:base64:5]',
@@ -55,6 +56,8 @@ module.exports = {
                     options: {
                         sourceMap: true,
                     },
+                }, {
+                    loader: 'sass-loader',
                 }],
             })
         }]

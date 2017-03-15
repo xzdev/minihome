@@ -1,0 +1,96 @@
+{
+  "header": {
+    "name": "XXX",
+    "email": "Email: xx@xx.xx",
+    "cell": "Cell#: 999-999-9999",
+    "home": "Homepage: http://www.xxxx.com"
+  },
+  "sections": [
+    {
+      "title": "Career Objective",
+      "content": "Senior full stack software engineer"
+    },
+    {
+      "title": "Skills",
+      "list": [
+        {
+          "name": "Specialty",
+          "items": [
+            "Web/Mobile Development",
+            "Map Visualizations",
+            "OO Design",
+            "MVC Frameworks",
+            "Web Performance"
+          ]
+        },
+        {
+          "name": "Web Development",
+          "items": [
+            "React/React Native/Flux/Redux",
+            "ES6",
+            "NodeJS",
+            "HTML5/CSS/SASS",
+            "Mocha/Jest"
+          ]
+        },
+        {
+          "name": "Programming Languages",
+          "items": [
+            "JavaScript",
+            "Java",
+            "Golang",
+            "Objective C",
+            "Swift",
+            "C/C++",
+            "Python"
+          ]
+        },
+        {
+          "name": "Development Tools",
+          "items": [
+            "Git",
+            "Webpack/Grunt",
+            "Swagger",
+            "Sublime/Eclipse/Vim",
+            "XCode",
+            "Android Studio"
+          ]
+        },
+        {
+          "name": "Others",
+          "items": [
+            "RESTful API",
+            "RelationalDB/SQL",
+            "TDD/BDD",
+            "Web Services",
+            "iOS Core Data",
+            "Mac OS/Linux"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Professional Experience",
+      "blocks": [
+        {
+          "summary": "Build Awesome Platform",
+          "company": "Awesome company",
+          "duration": "01/2015-present",
+          "role": "Software engineer",
+          "description": "Develop an awesome platform using awsome technology."
+        }
+      ]
+    },
+    {
+      "title": "Education",
+      "list": [
+        {
+          "description": "Master in Computer Science, Awesome University, USA"
+        },
+        {
+          "description": "BS in Computer Science, Awesome University, USA"
+        }
+      ]
+    }
+  ]
+}

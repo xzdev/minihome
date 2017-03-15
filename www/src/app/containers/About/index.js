@@ -6,7 +6,12 @@ import { selectResume } from '../appSelectors';
 class View extends Component {
 
   static propTypes = {
+    resume: PropTypes.object,
     fetchResume: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    resume: {},
   }
 
   componentWillMount() {
@@ -14,8 +19,9 @@ class View extends Component {
   }
 
   render() {
+    const data = this.props.resume;
     return (
-      <Resume data={{}} />
+      <Resume data={data} />
     );
   }
 }

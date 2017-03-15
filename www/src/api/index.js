@@ -6,7 +6,7 @@ export function fetchBlogs(payload) {
 }
 
 export function fetchResume() {
-
+  return apiFetch('/resume').then(response => response.json());
 }
 
 export function fetchBookmarks() {

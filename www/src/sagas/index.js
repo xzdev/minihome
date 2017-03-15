@@ -1,5 +1,5 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
-import { fetchBlogs } from '../api';
+import { takeEvery, put, call, fork } from 'redux-saga/effects';
+import { fetchBlogs, fetchResume as fetchResumeApi } from '../api';
 
 function* fetchApp(action) {
   try {
@@ -18,7 +18,7 @@ function* fetchApp(action) {
 
 function* fetchResume(action) {
   try {
-    const app = yield call(fetchBlogs, action.payload);
+    const app = yield call(fetchResumeApi, action.payload);
     yield put({
       type: 'REQUEST_RESUME_SUCCESS',
       payload: app,
@@ -31,9 +31,17 @@ function* fetchResume(action) {
   }
 }
 
-function* saga() {
+function* bootSaga() {
   yield takeEvery('APPLICATION_BOOT_REQUESTED', fetchApp);
+}
+
+function* resumeSage() {
   yield takeEvery('REQUEST_RESUME', fetchResume);
+}
+
+function* saga() {
+  yield fork(bootSaga);
+  yield fork(resumeSage);
 }
 
 export default saga;

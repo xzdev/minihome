@@ -41,6 +41,7 @@ module.exports = {
                     loader: 'css-loader',
                     options: {
                         modules: true,
+                        camelCase: 'dashes',
                         importLoaders: 1,
                         localIdentName: '[path][name]__[local]--[hash:base64:5]',
                     },
