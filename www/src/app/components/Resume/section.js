@@ -28,9 +28,7 @@ const getSectionWidget = (section) => {
       ws.push(<div className={styles.content} key={`content${k}`}>{v}</div>);
     } else if (k === SECTION_KEYS.LIST) {
       forEach(v, (li, key) => {
-        const classes = cx('listlist', {
-          hide: !li.name,
-        });
+        const classes = !li.name ? styles.listHide : styles.listList;
         ws.push(
           <div className={styles.listitem} key={`list${k}${key}`}>
             <div className={classes}>
@@ -67,8 +65,8 @@ const getSectionWidget = (section) => {
 };
 
 const ResumeSection = ({ data }) => (
-  <div className="x-resume-section">
-    <div className="x-title">{data.title}</div>
+  <div className={styles.resumeSection}>
+    <div className={styles.title}>{data.title}</div>
     { getSectionWidget(data) }
   </div>
 );
