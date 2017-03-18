@@ -21,7 +21,9 @@ type Route struct {
 type Routes []Route
 
 const (
+	API_ROOT       = "/api"
 	WWW            = "./www/dist/"
+	INDEX_HTML     = "index.html"
 	MAX_CONNECTION = 100
 )
 
@@ -45,7 +47,8 @@ func main() {
 		Route{"GET", "/bookmarks", r.BookmarkHandler},
 	}
 	router := newRouter(routes, redisPool)
-	router.PathPrefix("/").Handler(http.FileServer(http.Dir(WWW)))
+	//router.PathPrefix("/").Handler(http.FileServer(http.Dir(WWW)))
+	router.NotFoundHandler = notFundHandler()
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
@@ -58,10 +61,16 @@ func newRouter(routes Routes, pool *redis.Pool) *mux.Router {
 		handler := wrapHandler(route.HandlerFunc, route.Pattern, pool)
 		router.
 			Methods(route.Method).
-			Path(route.Pattern).
+			Path(API_ROOT + route.Pattern).
 			Handler(handler)
 	}
 	return router
+}
+
+func notFundHandler() http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, WWW+INDEX_HTML)
+	})
 }
 
 func wrapHandler(inner ServerHandler, pattern string, pool *redis.Pool) http.Handler {
