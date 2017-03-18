@@ -28,7 +28,10 @@ const getSectionWidget = (section) => {
       ws.push(<div className={styles.content} key={`content${k}`}>{v}</div>);
     } else if (k === SECTION_KEYS.LIST) {
       forEach(v, (li, key) => {
-        const classes = !li.name ? styles.listHide : styles.listList;
+        const classes = cx({
+          [styles.listHide]: !li.name,
+          [styles.listList]: !!li.name,
+        });
         ws.push(
           <div className={styles.listitem} key={`list${k}${key}`}>
             <div className={classes}>
