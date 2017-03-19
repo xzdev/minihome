@@ -1,0 +1,70 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css');
+
+.github-section {
+  margin: 10px 5px;
+}
+
+.github-block {
+  margin: 5px 5px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.github-icon {
+  display: inline-block;
+}
+
+.project-title {
+  padding: 5px 2px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.project {
+  padding: 5px 5px;
+}
+
+.project-name {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;  
+}
+
+.project-description {
+  font-size: 16px;
+  padding: 3px 0px;
+}
+
+.project-languages {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.github-link {
+
+}
+
+.github-tags {
+
+}
+
+.name {
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tag {
+  display: inline-block;
+  background-color: rgba(24, 47, 73, 0.45);
+  color: #fff;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin: 0px 5px;
+}
