@@ -12,6 +12,6 @@ export function fetchResume() {
 }
 
 export function fetchBookmarks() {
-
+  return apiFetch(`${apiRoot}/bookmarks`).then(response => response.json());
 }
 

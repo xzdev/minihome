@@ -1,5 +1,5 @@
 import { takeEvery, put, call, fork } from 'redux-saga/effects';
-import { fetchBlogs, fetchResume as fetchResumeApi } from '../api';
+import { fetchBlogs, fetchResume as fetchResumeApi, fetchBookmarks as fetchBookmarksApi } from '../api';
 
 function* fetchApp(action) {
   try {
@@ -31,17 +31,37 @@ function* fetchResume(action) {
   }
 }
 
+function* fetchBookmarks(action) {
+  try {
+    const app = yield call(fetchBookmarksApi, action.payload);
+    yield put({
+      type: 'REQUEST_BOOKMARKS_SUCCESS',
+      payload: app,
+    });
+  } catch (e) {
+    yield put({
+      type: 'REQUEST_BOOKMARKS_FAILED',
+      error: e,
+    });
+  }
+}
+
 function* bootSaga() {
   yield takeEvery('APPLICATION_BOOT_REQUESTED', fetchApp);
 }
 
-function* resumeSage() {
+function* resumeSaga() {
   yield takeEvery('REQUEST_RESUME', fetchResume);
+}
+
+function* bookmarkSaga() {
+  yield takeEvery('REQUEST_BOOKMARKS', fetchBookmarks);
 }
 
 function* saga() {
   yield fork(bootSaga);
-  yield fork(resumeSage);
+  yield fork(resumeSaga);
+  yield fork(bookmarkSaga);
 }
 
 export default saga;
