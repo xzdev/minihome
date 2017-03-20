@@ -27,6 +27,12 @@ const appReducers = (state = initState, action) => {
     case 'REQUEST_RESUME_SUCCESS':
       return state
         .set('resume', action.payload);
+    case 'REQUEST_BOOKMARKS_SUCCESS':
+      return state
+        .set('bookmarks', action.payload);
+    case 'REQUEST_BOOKMARKS_FAILURE':
+      return state
+        .set('bookmarks', {});
     default:
       return state;
   }

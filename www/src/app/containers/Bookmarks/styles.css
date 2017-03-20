@@ -1,0 +1,16 @@
+.bookmark-container {
+  margin: 5px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #111;
+}
+
+.excerpt {
+  color: #333;
+}
