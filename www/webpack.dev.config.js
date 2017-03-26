@@ -35,9 +35,12 @@ module.exports = {
                 }
             }],
         }, {
+            test: /\.json$/,
+            loader: 'json-loader',
+        }, {
             test: /\.js$/,
             exclude: /node_modules/,
-            loaders: ['babel-loader', 'eslint-loader']
+            loaders: ['babel-loader', 'eslint-loader'],
         }, {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
