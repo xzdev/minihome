@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	r "./routers"
+	r "github.com/xzdev/minihome/routers"
+
 	"github.com/garyburd/redigo/redis"
 	"github.com/gorilla/mux"
 )
