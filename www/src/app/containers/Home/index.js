@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectBlogs } from '../appSelectors';
 import Blog from '../../components/Blog';
+import Paginator from '../../components/Paginator';
 
 const BLOG_PAGE_SIZE = 50;
 
@@ -36,7 +37,7 @@ class View extends Component {
             <Blog blog={blog} key={blog.id} />
           ))
         }
-        <div>{total}</div>
+        <Paginator selectedPage={0} total={total} gotoPage={() => {}} />
       </div>
     );
   }
