@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectBlogs } from '../appSelectors';
 import Blog from '../../components/Blog';
+import BlogEditor from '../../components/BlogEditor';
+import Paginator from '../../components/Paginator';
 
 const BLOG_PAGE_SIZE = 50;
 
@@ -12,6 +14,13 @@ class View extends Component {
     appBootup: PropTypes.func.isRequired,
     blogs: PropTypes.object.isRequired,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      editing: false,
+    };
+  }
 
   componentWillMount() {
     this.props.appBootup({
@@ -36,16 +45,26 @@ class View extends Component {
             <Blog blog={blog} key={blog.id} />
           ))
         }
-        <div>{total}</div>
+        <Paginator selectedPage={0} total={total} gotoPage={() => {}} />
       </div>
+    );
+  }
+
+  renderEditor(index) {
+    const blog = this.props.blogs[index] || {};
+    return (
+      <BlogEditor onSubmit={v => console.log(v)} content={blog} />
     );
   }
 
   render() {
     return (
       <div>
-        <div>Blogs</div>
-        { this.renderBlogs() }
+        <div>
+          <button onClick={() => this.setState({ editing: false })}>Blogs</button>
+          <button onClick={() => this.setState({ editing: true })}>Post</button>
+        </div>
+        { this.state.editing ? this.renderEditor(-1) : this.renderBlogs() }
       </div>
     );
   }

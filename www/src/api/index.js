@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { apiFetch } from './utils';
+import { apiFetch, apiPost } from './utils';
 
 const apiRoot = '/api';
 
@@ -15,3 +15,6 @@ export function fetchBookmarks() {
   return apiFetch(`${apiRoot}/bookmarks`).then(response => response.json());
 }
 
+export function postBlog(payload) {
+  return apiPost(`${apiRoot}/blogs`, payload);
+}
