@@ -53,7 +53,7 @@ class View extends Component {
   renderEditor(index) {
     const blog = this.props.blogs[index] || {};
     return (
-      <BlogEditor onSubmit={() => {}} content={blog} />
+      <BlogEditor onSubmit={v => console.log(v)} content={blog} />
     );
   }
 

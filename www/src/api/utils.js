@@ -11,3 +11,10 @@ export function apiFetch(url, options = {}) {
   }
   return fetch(newUrl, remainingOptions);
 }
+
+export function apiPost(url, body) {
+  return fetch(url, {
+    method: 'POST',
+    body,
+  });
+}

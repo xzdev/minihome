@@ -66,12 +66,16 @@ class BlogEditor extends Component {
   }
 
   render() {
+    const blog = {
+      title: this.state.title,
+      content: this.state.content,
+    };
+
     return (
       <div>
         <div>
           {
-            this.state.isPreview ? this.renderPreview()
-            : this.renderEditor(this.state.content)
+            this.state.isPreview ? this.renderPreview() : this.renderEditor()
           }
         </div>
         <div>
@@ -79,7 +83,7 @@ class BlogEditor extends Component {
             <button onClick={() => this.setState({ isPreview: !this.state.isPreview })}>
               { this.state.isPreview ? 'Edit' : 'Preview' }
             </button>
-            <button onClick={() => this.props.onSubmit(this.state.content)}>Submit</button>
+            <button onClick={() => this.props.onSubmit(blog)}>Submit</button>
           </div>
         </div>
       </div>
